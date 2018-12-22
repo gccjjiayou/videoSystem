@@ -4,6 +4,8 @@ import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
+import VueVideoPlayer from 'vue-video-player'
+import 'video.js/dist/video-js.css'
 
 
 require('es6-promise').polyfill()  //兼容低版本promise
@@ -28,6 +30,8 @@ const i18n = new VueI18n({
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
+
+Vue.use(VueVideoPlayer)
 
 Vue.config.productionTip = false  //设置为false以阻止vue在启动时生成生产提示
 
