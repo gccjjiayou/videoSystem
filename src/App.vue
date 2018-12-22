@@ -3,7 +3,7 @@
     <el-container>
       <el-header height="80px"><index-nav /></el-header>
       <el-container class="content-wrap">
-        <el-aside width="200px"><index-sidebar /></el-aside>
+        <el-aside width="250px"><index-sidebar /></el-aside>
         <el-container>
           <el-main>Main</el-main>
           <el-footer>Footer</el-footer>
@@ -38,9 +38,8 @@ export default {
 }
 </script>
 
-
 <style lang="less">
-
+@import url('assets/less/common.less');
 #app {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -67,7 +66,7 @@ export default {
 .el-main {
   background: #EEF5F9;
   position: absolute;
-  left: 200px;
+  left: 250px;
   top: 80px;
   right: 0;
   bottom: 60px;
@@ -77,7 +76,7 @@ export default {
   background: linear-gradient(to left, #7b4397, #2196f3);
   position: absolute;
   bottom: 0;
-  left: 200px;
+  left: 250px;
   right: 0;
   z-index: 2;
 }
