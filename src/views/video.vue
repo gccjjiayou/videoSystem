@@ -56,25 +56,26 @@
             <div slot="header">
               <el-row>
                 <el-col :span="16">
-                  <el-button type="text" size="medium">发布时间排序</el-button>
-                  <el-button type="text" size="medium">视频热度排序</el-button>
+                  <el-button type="text" size="medium">按上传时间排序</el-button>
+                  <el-button type="text" size="medium">按视频热度排序</el-button>
+                  <el-button type="text" size="medium">按评分排序</el-button>
                 </el-col>
                 <el-col :span="8">
                   <el-input style="width: 200px;" 
                     v-model="searchString" 
                     placeholder="请输入视频名" 
-                    @keyup.enter.native="getSearchVideo"></el-input>
+                    clearable
+                    @keyup.enter.native="getSearchData"></el-input>
                   <el-button
                     icon="el-icon-search"
-                    plain
-                    clearable
-                    @click="getSearchVideo"></el-button>
+                    plain                   
+                    @click="getSearchData"></el-button>
                 </el-col>
               </el-row>
               
               
             </div>
-            <template v-for="(item, index) in videoData">
+            <template v-for="(item, index) in showData">
               <section :key="index" class="video-info">
                 <div class="left">
                   <img :src="item.url" alt="">
@@ -99,6 +100,15 @@
 
               </section>
             </template>
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="[10, 20, 30, 40]"
+              :page-size="10"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
+            </el-pagination>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -119,14 +129,7 @@
           </el-card>
         </el-col>
       </el-row>
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="10"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"></el-pagination>
+      
     </div>
   </div>
 </template>
@@ -135,7 +138,7 @@
 export default {
   data() {
     return {
-      showSearch: true,
+      showSearch: false,
       searchForm: {
         school: '',
         classroom: '',
@@ -217,7 +220,7 @@ export default {
       total: 0,
       videoData: [
         { 
-          name: '【合集】我们的存在',
+          name: '合集我们的存在',
           date: '2018-12-20 18:06:08',
           url: require('../assets/img/list/list1.jpg'),
           description: '那时, 他才15岁。即使现在, 也只不过才16岁。但重重压在他身上的现实, 却总是比他的躯体更巨大 内心满怀期待, 希望结交许多好朋友的七美开始了高中的生活。据说班中有三分之二的女生都喜欢',
@@ -225,7 +228,7 @@ export default {
           collect: '177'
         },
         { 
-          name: '【BD1080p】魔王勇者 【华盟字幕组】',
+          name: 'BD1080p魔王勇者 华盟字幕组',
           date: '2018-12-21 10:37:59',
           url: require('../assets/img/list/list2.jpg'),
           description: '某科学の补档 字幕为华盟的简体版 感谢字幕组制作的字幕 中世纪，人类与魔族持续着征战。某日，拥有着强大力量的“勇者”闯入了魔王的城堡，为了拯救人类世界而向魔王挑战。等着他的却是',
@@ -234,7 +237,7 @@ export default {
 
         },
         {
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list3.jpg'),
           description: '感谢枫叶字幕组译制。 在人类与风共同生活的城市 「风来城」，每年会举行一年一度的「风节」。在「风节」的最后一天，传说的宝可梦洛奇亚会现身，为人类送上「恩惠之风」。这是人类',
@@ -242,7 +245,7 @@ export default {
           collect: '742'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list4.jpg'),
           description: '直传 人与风共同生活的都市·风来城， 正在举办一年一度的"风节"。 根据自古流传至今的传说， 祭典最后一天传说中的宝可梦·洛奇亚将会现身， 为人们带来恩惠之风。 封面https://www.pixiv.net/m',
@@ -250,7 +253,7 @@ export default {
           collect: '649'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list5.jpg'),
           description: '来源网络 来源网络 感谢VRAINSTORM字幕组',
@@ -258,7 +261,7 @@ export default {
           collect: '308'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list6.jpg'),
           description: '感谢@hungry小浩纸 的片源，92版OVA请关注小浩纸 翻译：Augustus·Xzavier；时间轴：起名费劲太郎 森田真法漫画改',
@@ -266,7 +269,7 @@ export default {
           collect: '187'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list1.jpg'),
           description: '那时, 他才15岁。即使现在, 也只不过才16岁。但重重压在他身上的现实, 却总是比他的躯体更巨大 内心满怀期待, 希望结交许多好朋友的七美开始了高中的生活。据说班中有三分之二的女生都喜欢',
@@ -274,7 +277,7 @@ export default {
           collect: '177'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list2.jpg'),
           description: '某科学の补档 字幕为华盟的简体版 感谢字幕组制作的字幕 中世纪，人类与魔族持续着征战。某日，拥有着强大力量的“勇者”闯入了魔王的城堡，为了拯救人类世界而向魔王挑战。等着他的却是',
@@ -283,7 +286,7 @@ export default {
 
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list3.jpg'),
           description: '感谢枫叶字幕组译制。 在人类与风共同生活的城市 「风来城」，每年会举行一年一度的「风节」。在「风节」的最后一天，传说的宝可梦洛奇亚会现身，为人类送上「恩惠之风」。这是人类',
@@ -291,7 +294,7 @@ export default {
           collect: '742'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list4.jpg'),
           description: '直传 人与风共同生活的都市·风来城， 正在举办一年一度的"风节"。 根据自古流传至今的传说， 祭典最后一天传说中的宝可梦·洛奇亚将会现身， 为人们带来恩惠之风。 封面https://www.pixiv.net/m',
@@ -299,7 +302,7 @@ export default {
           collect: '649'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list5.jpg'),
           description: '来源网络 来源网络 感谢VRAINSTORM字幕组',
@@ -307,7 +310,7 @@ export default {
           collect: '308'
         },
         { 
-          name: '【BD1080P+/2018剧场版】精灵宝可梦：我们的故事【枫叶】',
+          name: 'BD1080P+/2018剧场版精灵宝可梦：我们的故事枫叶',
           date: '2018-12-21 19:12:36',
           url: require('../assets/img/list/list6.jpg'),
           description: '感谢@hungry小浩纸 的片源，92版OVA请关注小浩纸 翻译：Augustus·Xzavier；时间轴：起名费劲太郎 森田真法漫画改',
@@ -315,6 +318,7 @@ export default {
           collect: '187'
         },
       ],
+      showData: [],
       hotVideoData: [
         { url: require('../assets/img/hotVideo/list1.jpg'),
           description: '那时, 他才15岁。即使现在, 也只不过才16岁。但重重压在他身上的现实, 却总是比他的躯体更巨大 内心满怀期待, 希望结交许多好朋友的七美开始了高中的生活。据说班中有三分之二的女生都喜欢',
@@ -407,10 +411,16 @@ export default {
     getVideoData() {
 
     },
-    getSearchVideo() {
-      
+    getSearchData() {
+      let temp = this.videoData
+      this.showData = this.videoData.filter(item => {
+        if(item.name.search(this.searchString) !== -1) {
+          return item
+        }
+      })
+      this.total = this.showData.length
+      this.videoData = temp
     }
-
   },
   mounted() { 
     let videoList = []
@@ -429,7 +439,8 @@ export default {
       })    
     })
     this.videoData = videoList
-    this.total = this.videoData.length
+    this.showData = this.videoData
+    this.total = this.showData.length
   }
   
 }
