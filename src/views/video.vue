@@ -6,11 +6,11 @@
       </div>
       <el-form ref="searchForm" :model="searchForm" label-width="80px">
         <el-form-item label="学校">
-          <el-select v-model="searchForm.school" placeholder="请选择学校">
+          <el-select v-model="school" placeholder="请选择学校">
             <el-option 
               v-for="item in schoolOptions"
               :key="item.id"
-              :label="item.label"
+              :label="item.name"
               :value="item.id">
             </el-option>
           </el-select>
@@ -20,26 +20,26 @@
             <el-option
               v-for="item in classroomOptions"
               :key="item.id"
-              :label="item.label"
+              :label="item.roomCode"
               :value="item.id">
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="教师">
-          <el-select v-model="searchForm.user" placeholder="请选择教师">
+          <el-select v-model="teacher" placeholder="请选择教师">
             <el-option
-              v-for="item in userOptions"
+              v-for="item in teacherOptions"
               :key="item.id"
-              :label="item.label"
+              :label="item.name"
               :value="item.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="视频名称">
-          <el-select v-model="searchForm.videoTitle" placeholder="请选择视频名称">
+        <el-form-item label="课程">
+          <el-select v-model="searchForm.course" placeholder="请选择课程">
             <el-option
-              v-for="item in videoTitleOptions"
-              :key="item.id"
-              :label="item.label"
+              v-for="item in courseOptions"
+              :key="item.cid"
+              :label="item.name"
               :value="item.id"></el-option>
           </el-select>
         </el-form-item>
@@ -135,88 +135,21 @@
 </template>
 
 <script>
+import { getAllSchools, getAllTeachers, getAllClassroom, getAllCourse } from '@/api/video'
 export default {
   data() {
     return {
-      showSearch: false,
+      showSearch: true,
+      school: '',
+      teacher: '',
       searchForm: {
-        school: '',
         classroom: '',
-        user: '',
-        videoTitle: '',
+        course: '',
       },
-      schoolOptions: [
-        {
-          label: '华中科技大学',
-          value: 1,
-        },
-        {
-          label: '武汉大学',
-          value: 2,
-        },
-        {
-          label: '武汉理工大学',
-          value: 3,
-        },
-        {
-          label: '中国地质大学',
-          value: 4,
-        }
-      ],
-      classroomOptions: [
-        {
-          label: '001',
-          value: 1,
-        },
-        {
-          label: '002',
-          value: 2,
-        },
-        {
-          label: '003',
-          value: 3,
-        },
-        {
-          label: '004',
-          value: 4,
-        }
-      ],
-      userOptions: [
-        {
-          label: '赵老师',
-          value: 1,
-        },
-        {
-          label: '王老师',
-          value: 2,
-        },
-        {
-          label: '孙老师',
-          value: 3,
-        },
-        {
-          label: '李老师',
-          value: 4,
-        }
-      ],
-      videoTitleOptions: [
-        {
-          label: '高级软件工程',
-          value: 1,
-        },
-        {
-          label: '高级操作系统',
-          value: 2,
-        },
-        {
-          label: '面向对象技术',
-          value: 3,
-        },
-        {
-          label: '先进软件开发技术与工具',
-          value: 4,
-        }
-      ],
+      schoolOptions: [],
+      classroomOptions: [],
+      teacherOptions: [],
+      courseOptions: [],
       total: 0,
       videoData: [
         { 
@@ -422,6 +355,22 @@ export default {
       this.videoData = temp
     }
   },
+  watch: {
+    school: function(val, oldVal) {
+      getAllTeachers(val).then(res => {
+        this.teacherOptions = res.data.result
+      })
+      getAllClassroom(val).then(res => {
+        this.classroomOptions = res.data.result
+      })
+    },
+    teacher: function(val, oldVal) {
+      getAllCourse(val).then(res => {
+        this.courseOptions = res.data.result
+      })
+    }
+  
+  },
   mounted() { 
     let videoList = []
     this.videoData.map(item => {
@@ -441,6 +390,13 @@ export default {
     this.videoData = videoList
     this.showData = this.videoData
     this.total = this.showData.length
+
+    getAllSchools().then(res => {
+      this.schoolOptions = res.data.result
+    })
+    // getAllTeachers(this.searchForm.school).then(res => {
+    //   this.teacherOptions = res.data.result
+    // })
   }
   
 }
