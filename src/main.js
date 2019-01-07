@@ -1,44 +1,38 @@
 import Vue from 'vue'
+import store from './store'
 import App from './App.vue'
 import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
+import VueBus from './api/eventBus'
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
 
 require('es6-promise').polyfill()  //兼容低版本promise
 
-//国际化
-import VueI18n from 'vue-i18n'
-//引入Element的语言包
-import enLocale from 'element-ui/lib/locale/lang/en'
-import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
-import esLocale from 'element-ui/lib/locale/lang/es'
+//全局注册组件
+import baseSearchbar from '@/components/common/baseSearchbar'
 
-Vue.use(VueI18n)
-const i18n = new VueI18n({
-  locale: 'en',
-  message: {
-    'en': enLocale,
-    'zh': zhLocale,
-    'es': esLocale
-  }
-})
+Vue.component('base-searchbar', baseSearchbar)
 
-Vue.use(ElementUI, {
-  i18n: (key, value) => i18n.t(key, value)
-})
+Vue.use(ElementUI)
 
 Vue.use(VueVideoPlayer)
+
+Vue.use(VueBus)
 
 Vue.config.productionTip = false  //设置为false以阻止vue在启动时生成生产提示
 
 // 配置axios
 Vue.prototype.$http = axios
+// axios.defaults.baseURL = "http://192.168.12.28:8080/sys"
+axios.defaults.baseURL = "http://47.106.107.145/EducationSystem/sys"
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

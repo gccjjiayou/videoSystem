@@ -21,44 +21,6 @@
                  @ready="playerReadied">
         </video-player>
       </el-col>
-      <el-col :span="6"  :offset="2">
-        <video-player  class="video-player-box"
-                 ref="videoPlayer"
-                 :options="playerOptions2"
-                 :playsinline="true"
-                 customEventName="customstatechangedeventname"
-                 @play="onPlayerPlay($event)"
-                 @pause="onPlayerPause($event)"
-                 @ended="onPlayerEnded($event)"
-                 @waiting="onPlayerWaiting($event)"
-                 @playing="onPlayerPlaying($event)"
-                 @loadeddata="onPlayerLoadeddata($event)"
-                 @timeupdate="onPlayerTimeupdate($event)"
-                 @canplay="onPlayerCanplay($event)"
-                 @canplaythrough="onPlayerCanplaythrough($event)"
-                 @statechanged="playerStateChanged($event)"
-                 @ready="playerReadied">
-        </video-player>
-      </el-col>
-      <el-col :span="6" :offset="2">
-        <video-player  class="video-player-box"
-                 ref="videoPlayer"
-                 :options="playerOptions2"
-                 :playsinline="true"
-                 customEventName="customstatechangedeventname"
-                 @play="onPlayerPlay($event)"
-                 @pause="onPlayerPause($event)"
-                 @ended="onPlayerEnded($event)"
-                 @waiting="onPlayerWaiting($event)"
-                 @playing="onPlayerPlaying($event)"
-                 @loadeddata="onPlayerLoadeddata($event)"
-                 @timeupdate="onPlayerTimeupdate($event)"
-                 @canplay="onPlayerCanplay($event)"
-                 @canplaythrough="onPlayerCanplaythrough($event)"
-                 @statechanged="playerStateChanged($event)"
-                 @ready="playerReadied">
-        </video-player>
-      </el-col>
     </el-row>
   </div>
    
@@ -99,7 +61,7 @@
       }
     },
     mounted() {
-      console.log('this is current player instance object', this.player)
+     
     },
     computed: {
       player() {
@@ -109,21 +71,20 @@
     methods: {
       // listen event
       onPlayerPlay(player) {
-        // console.log('player play!', player)
+       
       },
       onPlayerPause(player) {
-        // console.log('player pause!', player)
+      
       },
       // ...player event
 
       // or listen state event
       playerStateChanged(playerCurrentState) {
-        // console.log('player current update state', playerCurrentState)
+       
       },
 
       // player is ready
       playerReadied(player) {
-        console.log('the player is readied', player)
         // you can use it to do something...
         // player.[methods]
       },
