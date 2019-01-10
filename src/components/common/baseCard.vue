@@ -56,10 +56,9 @@
             <div slot="header">
               <el-row>
                 <el-col :span="16">
-                  <span>排序：</span>
-                  <el-button type="text" size="medium" @click="sortByUploadTime">时间</el-button>
-                  <el-button type="text" size="medium" @click="sortByClickNum">热度</el-button>
-                  <el-button type="text" size="medium" @click="sortByRank">评分</el-button>
+                  <el-button type="text" size="medium" @click="sortByUploadTime">按上传时间排序</el-button>
+                  <el-button type="text" size="medium" @click="sortByClickNum">按视频热度排序</el-button>
+                  <el-button type="text" size="medium" @click="sortByRank">按评分排序</el-button>
                 </el-col>
                 <el-col :span="8">
                   <el-input style="width: 200px;" 
@@ -72,18 +71,18 @@
                     plain                   
                     @click="getSearchData"></el-button>
                 </el-col>
-              </el-row>           
+              </el-row>
+              
+              
             </div>
-            <template v-for="(item, index) in videoData">
+            <template v-for="(item, index) in showData">
               <section :key="index" class="video-info">
                 <div class="left">
-                  <img :src="item.coverPicUrl || defaultImg" alt="" width="160px" height="100px">
+                  <img :src="item.coverPicUrl" alt="" width="160px" height="100px">
                 </div>
                 <div class="right">
                   <div class="head-info">
-                    <!-- <router-link :to="{name: 'videoDetail', params: {videoId: item.videoId}}"></router-link> -->
-                    <!-- <a style="text-decoration: none;" :href="item.videoUrl">{{item.videoTitle}}</a> -->
-                    <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
+                    <a style="text-decoration: none;" href="#">{{item.videoTitle}}</a>
                     <span>{{item.uploadTime}}</span>
                   </div>
                   <div class="icon-info">
@@ -97,25 +96,18 @@
                     </div>
                   </div>
                 </div>
+
               </section>
             </template>
-            <el-row>
-              <el-col :span="18">
-                <el-pagination
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange"
-                  :current-page="currentPage"
-                  :page-sizes="[2, 5, 30, 40]"
-                  :page-size="pageSize"
-                  layout="total, sizes, prev, pager, next, jumper"
-                  :total="total">
-                </el-pagination>
-              </el-col>
-              <el-col :span="6">
-                <el-button type="primary" style="float: right" @click="back">返回</el-button>
-              </el-col>
-            </el-row>
-            
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="[10, 20, 30, 40]"
+              :page-size="10"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
+            </el-pagination>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -147,7 +139,6 @@ export default {
   data() {
     return {
       showSearch: true,
-      defaultImg: require('@/assets/img/list/default-img.jpg'),
       school: '',
       classroom: '',
       teacher: '',   
@@ -156,15 +147,9 @@ export default {
       classroomOptions: [],
       teacherOptions: [],
       courseOptions: [],
-      sortType: 1,  // 排序类型，1按时间排序，2按热度排序，3按评分排序
-      sortOrientation: 1,  // 排序方向，1按正序排序，2按逆序排序
-      timeSortOrientation: -1,  
-      hotSortOrientation: -1,
-      rankSortOrientation: -1,
       total: 0,
-      pageSize: 2,   
-      currentPage: 1, 
       videoData: [],
+      showData: [],
       hotVideoData: [
         { url: require('../assets/img/hotVideo/list1.jpg'),
           description: '那时, 他才15岁。即使现在, 也只不过才16岁。但重重压在他身上的现实, 却总是比他的躯体更巨大 内心满怀期待, 希望结交许多好朋友的七美开始了高中的生活。据说班中有三分之二的女生都喜欢',
@@ -218,7 +203,8 @@ export default {
           play: '1.5万',
           collect: '649'
         },
-      ],     
+      ],
+      currentPage: 1,
       searchString: '',
       rankNum: {
         color: '#fff',
@@ -237,56 +223,62 @@ export default {
       restBackground: {
         'background-color': '#b8c0cc'
       },
-    
+      sortType: 1,  // 排序类型，1按时间排序，2按热度排序，3按评分排序
+      sortOrientation: 1,  // 排序方向，1按正序排序，2按逆序排序
     }
    
   },
   methods: {
     searchVideo() {
       this.showSearch = false
-      getVideoInfo(this.sortType, this.sortOrientation, this.pageSize, this.currentPage, this.school, this.classroom, this.teacher, this.course, this.searchString).then(res => {
+      let searchForm = {
+        school: this.school,
+        classroom: this.classroom,
+        teacher: this.teacher,
+        course: this.course
+      }
+      getVideoInfo(this.sortType, this.sortOrientation, null, null, searchForm, this.searchString).then(res => {
         this.videoData = res.data.result.rows
-        this.total = res.data.result.total
+        console.log(this.videoData)
+        // let data = res.data.result.rows
+        // data.forEach(item => {
+        //   let obj = item
+        //   if(obj.coverPicUrl === '') {
+        //     obj.coverPicUrl = '@/assets/img/list/no-image.jpg'
+        //     this.videoData.push(obj)
+        //   } else {
+        //     this.videoData.push(item)
+        //   }
+        //   console.log(this.videoData)
+        // })
+        this.showData = this.videoData
+        this.total = this.showData.length
       })
       
     },
-    resetForm() {
-      // this.school = ''
-      // this.classroom = ''
-      // this.teacher = ''
-      // this.course = ''
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
     },
-    handleSizeChange(val) {
-      this.pageSize = val
-      this.searchVideo()
+    handleSizeChange() {
+
     },
-    handleCurrentChange(val) {
-      this.currentPage = val
-      this.searchVideo()
+    handleCurrentChange() {
+
     },
     sortByUploadTime() {
       this.sortType = 1
-      this.timeSortOrientation = (this.timeSortOrientation + 1) % 2
-      this.sortOrientation = this.timeSortOrientation + 1
       this.searchVideo()
     },
     sortByClickNum() {
       this.sortType = 2
-      this.hotSortOrientation = (this.hotSortOrientation + 1) % 2
-      this.sortOrientation = this.hotSortOrientation + 1
       this.searchVideo()
     },
     sortByRank() {
       this.sortType = 3
-      this.rankSortOrientation = (this.rankSortOrientation + 1) % 2
-      this.sortOrientation = this.rankSortOrientation + 1
       this.searchVideo()
     },
     getSearchData() {
       this.searchVideo()
-    },
-    back() {
-      this.showSearch = true
     }
   },
   watch: {

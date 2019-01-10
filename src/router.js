@@ -19,6 +19,11 @@ export default new Router({
       name: 'video',
       component: () => import('@/views/video'),
 
+    },
+    {
+      path: '/video/videoDetail/:videoId',
+      name: 'videoDetail',
+      component: () => import('@/views/videoDetail'),
     }
   ]
 })

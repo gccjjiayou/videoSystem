@@ -30,7 +30,7 @@ export default {
       // isLogin: this.$store.state.user.isLogin,    
     }
   },
-  // updated() {
+  // updated: function() {
   //   this.isLogin = sessionStorage.getItem('isLogin') === 'true'
   // }
 }
