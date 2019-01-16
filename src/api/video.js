@@ -60,11 +60,29 @@ export function getVideoInfo(sortType, sortOrientation, pageSize, pageNumber, sc
 }
 
 export function getVideoDetail(videoId) {
+  return fetch({
+    url: '/video/detail/' + videoId,
+    method: 'get',
+  })
+}
+
+export function getHotVideos(schoolId) {
   const params = {
-    videoId: videoId
+    schoolId: schoolId
   }
   return fetch({
-    url: '/video/detail',
+    url: '/video/selectHotVideos',
+    methods: 'get',
+    params
+  })
+}
+
+export function getTeacherOtherVideos(teacherId) {
+  const params = {
+    teacherId: teacherId
+  }
+  return fetch({
+    url: '/video/selectVideosByTeacherId',
     method: 'get',
     params
   })

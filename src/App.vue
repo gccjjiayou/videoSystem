@@ -1,6 +1,6 @@
 <template>
-  <el-container v-if="this.$store.state.user.isLogin === true">     
-    <el-header height="80px"><index-nav /></el-header>
+  <el-container v-if="isLogin">     
+    <el-header height="50px"><index-nav /></el-header>
     <el-container class="content-wrap">
       <el-aside width="200px"><index-sidebar /></el-aside>
       <el-main><router-view /></el-main>
@@ -27,12 +27,17 @@ export default {
   name: 'App',
   data() {
     return {
-      // isLogin: this.$store.state.user.isLogin,    
+        
     }
   },
-  // updated: function() {
-  //   this.isLogin = sessionStorage.getItem('isLogin') === 'true'
-  // }
+  updated: function() {
+    
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.user.isLogin
+    }
+  }
 }
 </script>
 
@@ -55,7 +60,7 @@ export default {
   background: #fff;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   position: fixed !important;
-  top: 80px;
+  top: 50px;
   left: 0;
   bottom: 0;
   // z-index: 2;
@@ -65,7 +70,7 @@ export default {
   padding: 0px !important;
   position: absolute;
   left: 200px;
-  top: 80px;
+  top: 50px;
   right: 0;
   bottom: 0;
   z-index: 1;
@@ -78,6 +83,9 @@ export default {
   right: 0;
   z-index: 2;
 }
+// .el-card__header {
+//   padding: 0 20px;
+// }
 
 
 </style>

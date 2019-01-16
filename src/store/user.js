@@ -4,7 +4,7 @@ import { Message } from 'element-ui'
 const user = {
   state: {
     workerCode: '',
-    isLogin: false,
+    isLogin: false || (sessionStorage.getItem('isLogin') === 'true'),
   },
   mutations: {
     SET_WORKERCODE: (state, workerCode) => {

@@ -1,8 +1,7 @@
 <template>
-<div class="nav-box">
   <el-row class="wrap-items" type="flex">
       <el-col :span="18">
-        <h1>教评系统</h1>
+        <span style="color: #fff; font-size: 25px; font-weight: bold; letter-spacing: 2px;">教评系统</span>
       </el-col>
       <el-col :span="6">
         <el-row class="wrap-items" type="flex">
@@ -42,8 +41,6 @@
         </el-row>
       </el-col>
   </el-row>
-
-</div>
 </template>
 
 <script>
@@ -77,15 +74,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-h1 {
-  color: #fff;
-  letter-spacing: 2px;
-}
 .wrap-items {
   align-items: center;
 }
-.user-avatar {
-  border-radius: 50%;
-}
-
 </style>
