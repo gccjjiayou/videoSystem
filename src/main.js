@@ -14,7 +14,6 @@ import 'video.js/dist/video-js.css'
 require('es6-promise').polyfill()  //兼容低版本promise
 
 //全局注册组件
-import baseSearchbar from '@/components/common/baseSearchbar'
 
 Vue.component('base-searchbar', baseSearchbar)
 
