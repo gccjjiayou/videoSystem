@@ -4,12 +4,12 @@
       <el-col :span="18">
         <el-card  shadow="hover" class="mycard">
           <div slot="header">
-            <base-searchbar ref="searchbar"
+            <video-searchbar ref="searchbar"
               @search-data="getSearchData"
               @select-school="getSelectData"
               @select-classroom="getSelectData"
               @select-teacher="getSelectData"
-              @select-course="getSelectData"></base-searchbar>         
+              @select-course="getSelectData"></video-searchbar>         
           </div>
           <template v-for="(item, index) in videoData">
             <section :key="index" class="video-info">
@@ -41,7 +41,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
-            :page-sizes="[1, 2, 5, 30, 40]"
+            :page-sizes="pageSizes"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total">
@@ -74,7 +74,8 @@ export default {
       hotSortOrientation: -1,
       rankSortOrientation: -1,
       total: 0,
-      pageSize: 2,   
+      pageSize: 2, 
+      pageSizes: [1, 2, 5, 30, 40], 
       currentPage: 1, 
       videoData: [],
     }  

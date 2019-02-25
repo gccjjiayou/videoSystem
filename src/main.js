@@ -14,9 +14,6 @@ import 'video.js/dist/video-js.css'
 require('es6-promise').polyfill()  //兼容低版本promise
 
 //全局注册组件
-
-Vue.component('base-searchbar', baseSearchbar)
-
 Vue.use(ElementUI)
 
 Vue.use(VueVideoPlayer)

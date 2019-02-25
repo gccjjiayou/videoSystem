@@ -27,7 +27,7 @@
                 <img src="@/assets/img/sidebar-user.jpg" alt="">
                 <span style="{display: inline-block; margin-left: 5px;}">用户信息管理</span>
             </el-menu-item>
-            <el-menu-item index="1">
+            <el-menu-item index="/school">
                 <img src="@/assets/img/sidebar-school.jpg" alt="">
                 <span class="sidebar-span">学校管理</span>
             </el-menu-item>
