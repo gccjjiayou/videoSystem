@@ -49,7 +49,7 @@ export default {
               type: 'success',
               message: 'login success!',            
             })
-            sessionStorage.setItem('isLogin', true)
+            sessionStorage.setItem('hasLogin', true)
           })         
         }
       })   
@@ -64,7 +64,7 @@ export default {
 
 <style lang="less" scoped>
 .my-login {
-  background-image: url('../assets/img/login-background.jpg'); 
+  background-image: url('../../assets/img/login-background.jpg'); 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

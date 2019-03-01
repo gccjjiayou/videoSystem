@@ -1,48 +1,61 @@
 <template>
-  <el-container v-if="isLogin">     
-    <el-header height="50px"><index-nav /></el-header>
-    <el-container class="content-wrap">
-      <el-aside width="200px"><index-sidebar /></el-aside>
-      <el-main><router-view /></el-main>
+  <el-container v-if="hasLogin">
+    <el-container v-if="videoPlay">
+      <router-view/>
     </el-container>
-    <!-- <el-footer>Footer</el-footer> -->
-  </el-container> 
+    <el-container v-else>
+      <el-header height="50px">
+        <index-nav/>
+      </el-header>
+      <el-container class="content-wrap">
+        <el-aside width="200px">
+          <index-sidebar/>
+        </el-aside>
+        <el-main>
+          <router-view/>
+        </el-main>
+      </el-container>
+    </el-container>
+  </el-container>
   <div v-else>
     <login></login>
-  </div>  
+  </div>
 </template>
 
 <script>
-import login from "@/views/login"
-import indexNav from '@/components/index/indexNav'
-import indexSidebar from '@/components/index/indexSidebar'
-import indexFooter from '@/components/index/indexFooter'
+import login from "@/components/login/login";
+import indexNav from "@/components/index/indexNav";
+import indexSidebar from "@/components/index/indexSidebar";
+import indexFooter from "@/components/index/indexFooter";
+
 export default {
   components: {
-     login: login,
-    'index-nav': indexNav,
-    'index-sidebar': indexSidebar,
-    'index-footer': indexFooter
+    login: login,
+    "index-nav": indexNav,
+    "index-sidebar": indexSidebar,
+    "index-footer": indexFooter
   },
-  name: 'App',
+  name: "App",
   data() {
-    return {
-        
-    }
+    return {};
   },
-  updated: function() {
-    
-  },
+  updated: function() {},
   computed: {
-    isLogin() {
-      return this.$store.state.user.isLogin
+    hasLogin() {
+      return this.$store.state.user.hasLogin;
+    },
+    videoPlay() {
+      return this.$route.name === "videoDetail" || this.$route.name === 'videoLive';
     }
+  },
+  mounted() {
+    
   }
-}
+};
 </script>
 
 <style lang="less">
-@import url('./assets/less/common.less');
+@import url("./assets/less/common.less");
 #app {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -83,9 +96,4 @@ export default {
   right: 0;
   z-index: 2;
 }
-// .el-card__header {
-//   padding: 0 20px;
-// }
-
-
 </style>

@@ -61,7 +61,13 @@
             <el-menu-item index="/video">
                 <img src="@/assets/img/sidebar-video.jpg" alt="">
                 <span class="sidebar-span">视频管理</span>
-            </el-menu-item>      
+            </el-menu-item>  
+            <el-menu-item>
+                <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoLive'}">
+                    <img src="@/assets/img/sidebar-live.jpg" alt="">
+                    <span class="sidebar-span">视频直播</span>
+                </router-link>
+            </el-menu-item>    
         </el-menu>
     </el-card>
 </div>

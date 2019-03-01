@@ -47,7 +47,7 @@
               <img :src="item.coverPicUrl || defaultImg" alt="" width="100px" height="60px">
             </div>
             <div class="right">
-              <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
+              <router-link tag="a" target="_blank" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
               <div class="icon-wrap">
                 <div class="right-icon">
                   <img src="@/assets/img/list/play.jpg" alt="">

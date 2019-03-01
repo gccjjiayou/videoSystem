@@ -58,7 +58,7 @@ export default {
         type: 'warning',
       }).then(() => {
         this.$store.dispatch('Logout', this.$store.state.user.workerCode).then(() => {
-          sessionStorage.setItem('isLogin', false)
+          sessionStorage.setItem('hasLogin', false)
         })
       }).catch(() => {
         this.$message({

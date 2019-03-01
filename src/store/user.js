@@ -4,7 +4,8 @@ import { Message } from 'element-ui'
 const user = {
   state: {
     workerCode: '',
-    isLogin: false || (sessionStorage.getItem('isLogin') === 'true'),
+    hasLogin: false || (sessionStorage.getItem('hasLogin') === 'true'),
+    showVideoLive: false || (sessionStorage.getItem('showVideoLive') === 'true'),
   },
   mutations: {
     SET_WORKERCODE: (state, workerCode) => {
@@ -12,10 +13,13 @@ const user = {
     },
     LOGOUT: state => {
       state.workerCode = ''
-      state.isLogin = false
+      state.hasLogin = false
     },
     SET_LOGIN: state => {
-      state.isLogin = true
+      state.hasLogin = true
+    },
+    SHOW_VIDEOLIVE: state => {
+      state.showVideoLive = true
     }
   },
   actions: {
@@ -52,4 +56,3 @@ const user = {
 }
 
 export default user
-

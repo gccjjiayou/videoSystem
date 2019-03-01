@@ -8,6 +8,7 @@ import router from './router'
 import VueBus from './api/eventBus'
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
+import 'videojs-flash'
 // import 'vue-video-player/src/custom-theme.css'
 
 

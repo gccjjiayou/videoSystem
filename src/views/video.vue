@@ -32,7 +32,7 @@
                   </div>
                   <a style="text-decoration" :href="item.videoUrl">
                     <i class="el-icon-download"></i>
-                  </a>{{parseFloat(item.size / 1048576).toFixed(2)}}mb       
+                  </a>{{parseFloat(item.size / 1048576).toFixed(2)}}MB
                 </div>
               </div>
             </section>

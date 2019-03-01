@@ -29,18 +29,11 @@ export default new Router({
       path: '/video/videoDetail/:videoId',
       name: 'videoDetail',
       component: () => import('@/views/videoDetail'),
+    },
+    {
+      path: '/videoLive',
+      name: 'videoLive',
+      component: () => import('@/views/videoLive'),
     }
   ]
 })
-
-// Router.beforeEach((to, from, next) => {
-//   let isLogin = sessionStorage.getItem('isLogin') === 'true' //session只能保存字符串，所以保存的是'true'
-//   if(!isLogin && to.matched.some(item => {
-//     return item.meta.requireAuth
-//   })) {
-//     Message.error('未登录')
-//     next('/')  // 返回首页
-//   } else {
-//     next()  // 不需要认证就正常执行
-//   }
-// })
