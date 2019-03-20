@@ -29,6 +29,7 @@ Vue.prototype.$http = axios
 axios.defaults.baseURL = "http://47.106.107.145/EducationSystem/sys"
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
+
 new Vue({
   router,
   store,

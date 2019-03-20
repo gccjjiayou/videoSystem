@@ -1,28 +1,12 @@
 <template>
 <div class="sidebar-box">
     <el-card :body-style="{ padding: '0px'}" shadow="never">
-        <!-- <div slot="header">
-            <el-row :gutter="30">
-                <el-col :span="8"><img class="user-avatar" src="@/assets/img/avatar-1.jpg" alt=""></el-col>
-                <el-col :span="16"><h3>Steena Ben</h3></el-col>
-            </el-row>
-        </div> -->
         <el-menu class="el-menu-vertical-demo" 
             :collapse="isCollapse" 
             :unique-opened="true" 
             active-text-color="#303133"
             :default-active="$route.path"
             router>
-            <!-- <el-submenu  :index="index + ''" v-for="index in 7" :key="index">
-                <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>Home{{index}}</span>
-                </template>
-                <el-menu-item class="menu-item" index="/">选项1</el-menu-item>
-                <el-menu-item class="menu-item" index="1-2">选项2</el-menu-item>
-                <el-menu-item class="menu-item" index="1-3">选项3</el-menu-item>
-                <el-menu-item class="menu-item" index="1-4">选项4</el-menu-item>
-            </el-submenu> -->
             <el-menu-item index="/">
                 <img src="@/assets/img/sidebar-user.jpg" alt="">
                 <span style="{display: inline-block; margin-left: 5px;}">用户信息管理</span>
@@ -62,12 +46,12 @@
                 <img src="@/assets/img/sidebar-video.jpg" alt="">
                 <span class="sidebar-span">视频管理</span>
             </el-menu-item>  
-            <el-menu-item>
+            <!-- <el-menu-item index="5">
                 <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoLive'}">
                     <img src="@/assets/img/sidebar-live.jpg" alt="">
                     <span class="sidebar-span">视频直播</span>
                 </router-link>
-            </el-menu-item>    
+            </el-menu-item>     -->
         </el-menu>
     </el-card>
 </div>

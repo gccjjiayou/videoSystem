@@ -45,11 +45,13 @@ export default {
       return this.$store.state.user.hasLogin;
     },
     videoPlay() {
-      return this.$route.name === "videoDetail" || this.$route.name === 'videoLive';
+      return (
+        this.$route.name === "videoDetail" || this.$route.name === "videoLive"
+      );
     }
   },
   mounted() {
-    
+
   }
 };
 </script>

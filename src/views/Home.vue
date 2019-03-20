@@ -17,6 +17,7 @@
           controls: true
         }
       }
-    }
+    },
+   
   }
 </script>
