@@ -14,12 +14,12 @@
       <el-row :gutter="10">
         <el-col :span="6">
           <el-select 
-            v-model="school" 
-            placeholder="请选择学校"
+            v-model="college" 
+            placeholder="请选择学院"
             clearable
-            @change="selectSchool">
+            @change="selectCollege">
             <el-option 
-              v-for="item in schoolOptions"
+              v-for="item in collegeOptions"
               :key="item.id"
               :label="item.name"
               :value="item.id">
@@ -73,29 +73,32 @@
 </template>
 
 <script>
-import { getAllSchools, getAllTeachers, getAllClassroom, getAllCourse } from '@/api/video'
+import { getAllColleges } from "@/api/college"
+import { getAllTeachersByCollegeId } from "@/api/teacher"
+import { getAllClassrooms } from "@/api/classroom"
+import { getAllCoursesByTeacherId } from "@/api/course"
 export default {
   data() {
     return {
-      school: null,
+      college: null,
       classroom: '',
       teacher: '',
       course: '',
       searchString: '',
-      schoolOptions: '',
-      classroomOptions: '',
-      teacherOptions: '',
-      courseOptions: '',
+      collegeOptions: [],
+      classroomOptions: [],
+      teacherOptions: [],
+      courseOptions: [],
     }
   },
   methods: {
     searchData() {
       this.$emit('search-data')
     },
-    selectSchool(val) {
-      this.school = val === ''? null : val
-      this.$store.commit('SET_SCHOOL', this.school)
-      this.$emit('select-school')
+    selectCollege(val) {
+      this.college = val === ''? null : val
+      this.$store.commit('SET_COLLEGE', this.college)
+      this.$emit('select-college')
     },
     selectClassroom(val) {
       this.classroom = val
@@ -114,23 +117,23 @@ export default {
     }
   },
   watch: {
-    school: function(val, oldVal) {
-      getAllTeachers(val).then(res => {
+    college: function(val, oldVal) {
+      getAllTeachersByCollegeId(val).then(res => {
         this.teacherOptions = res.data.result
-      })
-      getAllClassroom(val).then(res => {
-        this.classroomOptions = res.data.result
       })
     },
     teacher: function(val, oldVal) {
-      getAllCourse(val).then(res => {
+      getAllCoursesByTeacherId(val).then(res => {
         this.courseOptions = res.data.result
       })
     } 
   },
   mounted() { 
-    getAllSchools().then(res => {
-      this.schoolOptions = res.data.result
+    getAllColleges().then(res => {
+      this.collegeOptions = res.data.result
+    })
+    getAllClassrooms().then(res => {
+      this.classroomOptions = res.data.result
     })
   }    
 }

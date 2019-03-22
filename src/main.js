@@ -25,8 +25,8 @@ Vue.config.productionTip = false  //设置为false以阻止vue在启动时生成
 
 // 配置axios
 Vue.prototype.$http = axios
-// axios.defaults.baseURL = "http://192.168.12.28:8080/sys"
-axios.defaults.baseURL = "http://47.106.107.145/EducationSystem/sys"
+axios.defaults.baseURL = "http://192.168.12.141:8080/sys"
+// axios.defaults.baseURL = "http://47.106.107.145/EducationSystem/sys"
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 

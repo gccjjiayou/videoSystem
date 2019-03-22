@@ -1,5 +1,5 @@
 <template>
-<el-card class="my-school">
+<el-card class="my-college">
   <base-table v-if="show==='table'"
     ref="mytable"
     :loading="tableLoading"
@@ -8,21 +8,21 @@
     :backPagination="true"
     :pageTotal="pageTotal"
     @sort-change="sortData"
-    @search-data="searchSchoolData"
-    @update-data="updateSchoolData"
-    @add="addSchool"></base-table>
-  <!-- <add-school v-else-if="show==='add'"></add-school> -->
+    @search-data="searchCollegeData"
+    @update-data="updateCollegeData"
+    @add="addCollege"></base-table>
+  <!-- <add-college v-else-if="show==='add'"></add-college> -->
 </el-card>
 </template>
 
 <script>
-import { getSchoolInfo } from '@/api/school'
+// import { getCollegeInfo } from '@/api/college'
 import baseTable from '@/components/common/baseTable'
-import addSchool from '@/components/school/addSchool'
+import addCollege from '@/components/college/addCollege'
 export default {
   components: {
     'base-table': baseTable,
-    'add-school': addSchool,
+    'add-college': addCollege,
   },
   data() {
     return {
@@ -93,30 +93,30 @@ export default {
     }
   },
   methods: {
-    getSchoolData() {
-      getSchoolInfo(this.searchString, this.$refs.mytable.pageSize, this.$refs.mytable.currentPage).then(res => {
-        this.tableData = res.data.result.rows
-        this.pageTotal = res.data.result.total
-      })
+    getCollegeData() {
+      // getCollegeInfo(this.searchString, this.$refs.mytable.pageSize, this.$refs.mytable.currentPage).then(res => {
+      //   this.tableData = res.data.result.rows
+      //   this.pageTotal = res.data.result.total
+      // })
     },
     sortData() {
 
     },
-    searchSchoolData(val) {
-      getSchoolInfo(val, this.$refs.mytable.pageSize, 1).then(res => {
-        this.tableData = res.data.result.rows
-        this.pageTotal = res.data.result.total
-      })
+    searchCollegeData(val) {
+      // getCollegeInfo(val, this.$refs.mytable.pageSize, 1).then(res => {
+      //   this.tableData = res.data.result.rows
+      //   this.pageTotal = res.data.result.total
+      // })
     },
-    updateSchoolData() {
-      this.getSchoolData()
+    updateCollegeData() {
+      // this.getCollegeData()
     },
-    addSchool() {
+    addCollege() {
       this.show = 'add'
     }
   },
   mounted() {
-    this.getSchoolData()
+    // this.getCollegeData()
   }
   
 }

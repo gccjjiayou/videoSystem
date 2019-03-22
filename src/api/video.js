@@ -1,55 +1,15 @@
 import fetch from './fetch'
 
-export function getAllSchools() {
-  return fetch({
-    url: '/school/listSchool',
-    method: 'get'
-  })
-}
-
-export function getAllTeachers(schoolId) {
-  const params = {
-    schoolId: schoolId,
-  }
-  return fetch({
-    url: '/school/listTeacherBySchoolId',
-    method: 'get',
-    params
-  })
-}
-
-export function getAllClassroom(schoolId) {
-  const params = {
-    schoolId: schoolId
-  }
-  return fetch({
-    url: '/school/listClassroomBySchoolId',
-    method: 'get',
-    params
-  })
-}
-
-export function getAllCourse(teacherId) {
-  const params = {
-    teacherId: teacherId
-  }
-  return fetch({
-    url: '/school/listCourseByTeacherId',
-    method: 'get',
-    params
-  })
-}
-
-export function getVideoInfo(sortType, sortOrientation, pageSize, pageNumber, schoolId, classroomId, teacherId, courseId, videoTitle) {
+export function getVideoInfo(sortType, sortOrientation, pageSize, pageNumber, collegeId, classroomId, teacherId, courseId, videoTitle) {
   const params = {
     sortType: sortType,
     sortOrientation: sortOrientation,
     pageSize: pageSize,
     pageNumber: pageNumber,
-    schoolId: schoolId,
-    classroomId: classroomId,
-    teacherId: teacherId,
+    collegeId: collegeId,
+    classroomId: classroomId,  
     courseId: courseId,
+    teacherId: teacherId,
     videoTitle: videoTitle,    
   }
   return fetch({
@@ -66,9 +26,9 @@ export function getVideoDetail(videoId) {
   })
 }
 
-export function getHotVideos(schoolId) {
+export function getHotVideos(collegeId) {
   const params = {
-    schoolId: schoolId
+    collegeId: collegeId
   }
   return fetch({
     url: '/video/selectHotVideos',

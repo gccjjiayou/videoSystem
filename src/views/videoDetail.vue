@@ -6,7 +6,7 @@
           <div slot="header">
             <h3>{{videoDetail.videoTitle}}</h3>
             <div class="video-info">            
-              <div class="item">{{videoDetail.schoolName}}>{{videoDetail.courseName}} | {{videoDetail.teacherName}} | {{videoDetail.deviceMac}}</div>            
+              <div class="item">{{videoDetail.collegeName}}>{{videoDetail.courseName}} | {{videoDetail.teacherName}} | {{videoDetail.deviceMac}}</div>            
               <div class="item">{{videoDetail.uploadTime}}</div>
             </div>
             <div class="icon-info">

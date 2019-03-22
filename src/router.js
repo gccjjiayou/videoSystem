@@ -15,9 +15,9 @@ export default new Router({
       meta: {requireAuth: true}, // 需要登录的用户才能看到
     },
     {
-      path: '/school',
-      name: 'school',
-      component: () => import('@/views/school')
+      path: '/college',
+      name: 'college',
+      component: () => import('@/views/college')
     },
     {
       path: '/video',

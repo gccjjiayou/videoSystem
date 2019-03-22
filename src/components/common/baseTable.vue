@@ -31,7 +31,7 @@
         :sortable="item.sortable">
         <template slot-scope="scope">
           <img v-if="item.prop==='logo'" :src="scope.row.logo" width="35px" height="35px" alt="">
-          <el-button v-else size="mini" round @click="editDetail(scope.row.schoolId)">编辑</el-button>
+          <el-button v-else size="mini" round @click="editDetail(scope.row.collegeId)">编辑</el-button>
         </template>
       </el-table-column>
       <el-table-column v-else

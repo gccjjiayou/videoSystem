@@ -29,7 +29,7 @@
 import { getHotVideos } from "@/api/video"
 export default {
   props: {
-    schoolId: Number,
+    collegeId: Number,
   },
   data() {
     return {
@@ -55,14 +55,14 @@ export default {
     }
   },
   watch: {
-    schoolId: function(val, oldVal) {
-      getHotVideos(this.schoolId).then(res => {
+    collegeId: function(val, oldVal) {
+      getHotVideos(this.collegeId).then(res => {
         this.hotVideoData = res.data.result
       })
     }
   }, 
   mounted() {
-    getHotVideos(this.schoolId).then(res => {
+    getHotVideos(this.collegeId).then(res => {
       this.hotVideoData = res.data.result
     })
   }

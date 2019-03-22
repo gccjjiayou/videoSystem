@@ -1,6 +1,6 @@
 <template>
 <el-dialog
-  title="添加学校"
+  title="添加学院"
   :visible.sync="centerDialogVisible"
   width="30%"
   center>
@@ -15,10 +15,10 @@
             :value="item.id"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="学校">
-        <el-select v-model="school">
+      <el-form-item label="学院">
+        <el-select v-model="college">
           <el-option
-            v-for="(item, index) in schoolOptions"
+            v-for="(item, index) in collegeOptions"
             :key="index"
             :label="item.value"
             :value="item.id"></el-option>
@@ -35,7 +35,7 @@ export default {
     return {
       form: {
         region: '',
-        school: '',
+        college: '',
       },
       regionOptions: [
         {
@@ -56,7 +56,7 @@ export default {
         }
 
       ],
-      schoolOptions: [
+      collegeOptions: [
         {
           label: '北京大学',
           value: 1,

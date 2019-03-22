@@ -1,13 +1,13 @@
 const superAdmin = {
   state: {
-    school: null,
+    college: null,
     classroom: '',
     teacher: '',
     course: '',
   },
   mutations: {
-    SET_SCHOOL: (state, school) => {
-      state.school = school
+    SET_COLLEGE: (state, college) => {
+      state.college = college
     },
     SET_CLASSROOM: (state, classroom) => {
       state.classroom = classroom

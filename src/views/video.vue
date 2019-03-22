@@ -6,7 +6,7 @@
           <div slot="header">
             <video-searchbar ref="searchbar"
               @search-data="getSearchData"
-              @select-school="getSelectData"
+              @select-college="getSelectData"
               @select-classroom="getSelectData"
               @select-teacher="getSelectData"
               @select-course="getSelectData"></video-searchbar>         
@@ -49,7 +49,7 @@
         </el-card>
       </el-col>
       <el-col :span="6">
-        <video-hotlist :schoolId="school"></video-hotlist>
+        <video-hotlist :collegeId="college"></video-hotlist>
       </el-col>
     </el-row>   
   </div>
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     searchVideo() {
-      getVideoInfo(this.sortType, this.sortOrientation, this.pageSize, this.currentPage, this.school, this.classroom, this.teacher, this.course, this.searchString).then(res => {
+      getVideoInfo(this.sortType, this.sortOrientation, this.pageSize, this.currentPage, this.college, this.classroom, this.course, this.teacher, this.searchString).then(res => {
         this.videoData = res.data.result.rows
         this.total = res.data.result.total
       })   
@@ -124,8 +124,8 @@ export default {
     },
   },
   computed: {
-    school() {
-      return this.$store.state.superAdmin.school
+    college() {
+      return this.$store.state.superAdmin.college
     },
     classroom() {
       return this.$store.state.superAdmin.classroom
