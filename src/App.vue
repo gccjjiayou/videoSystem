@@ -1,5 +1,6 @@
 <template>
   <el-container v-if="hasLogin">
+  <!-- <el-container> -->
     <el-container v-if="videoPlay">
       <router-view/>
     </el-container>

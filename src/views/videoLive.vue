@@ -27,15 +27,15 @@
 
 <style lang="less" scoped>
 .my-live {
-  // background-image: url('../assets/img/live-background.jpg'); 
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position: center center;
-  // background-attachment: scroll;
-  // height: 100vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  background-image: url('../assets/img/live-background.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: scroll;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>

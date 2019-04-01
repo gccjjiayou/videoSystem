@@ -3,8 +3,8 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.12.141:8080/sys",  // api的base_url
-  // baseURL: "http://47.106.107.145/EducationSystem/sys",
+  // baseURL: "http://192.168.11.246:8080/sys",  // api的base_url
+  baseURL: "http://47.106.107.145/EducationSystem/sys",
   timeout: 5000,  // 请求超时时间
   withCredentials: true,  // 跨域请求中携带cookie
 })

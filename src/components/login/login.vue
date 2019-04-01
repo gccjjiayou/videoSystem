@@ -7,10 +7,10 @@
       </div>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="工号" prop="workerCode">
-          <el-input v-model="form.workerCode"></el-input>
+          <el-input v-model="form.workerCode" prefix-icon="iconfont icon-yonghuming"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="form.password"></el-input>
+          <el-input type="password" v-model="form.password" prefix-icon="iconfont icon-mima" @keyup.enter.native="login('form')"></el-input>
         </el-form-item>
         <el-form-item style="float: right">
           <el-button @click="resetForm('form')">取消</el-button>
@@ -56,7 +56,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
-    }
+    },
   }
   
 }
