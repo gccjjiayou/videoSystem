@@ -1,4 +1,4 @@
-const superAdmin = {
+const admin = {
   state: {
     college: null,
     classroom: '',
@@ -21,4 +21,4 @@ const superAdmin = {
   }
 }
 
-export default superAdmin
+export default admin

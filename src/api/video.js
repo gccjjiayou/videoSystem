@@ -1,6 +1,6 @@
 import fetch from './fetch'
 
-export function getVideoInfo(sortType, sortOrientation, pageSize, pageNumber, collegeId, classroomId, teacherId, courseId, videoTitle) {
+export function getVideoInfo(sortType, sortOrientation, pageSize, pageNumber, collegeId, classroomId, courseId, teacherId, videoTitle) {
   const params = {
     sortType: sortType,
     sortOrientation: sortOrientation,
