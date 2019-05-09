@@ -1,8 +1,12 @@
 <template>
   <el-container v-if="hasLogin">
-  <!-- <el-container> -->
     <el-container v-if="videoPlay">
-      <router-view/>
+      <el-header height="50px">
+        <index-nav />
+      </el-header>
+      <el-main class="videoplay-main">
+        <router-view/>
+      </el-main>    
     </el-container>
     <el-container v-else>
       <el-header height="50px">
@@ -12,7 +16,7 @@
         <el-aside width="200px">
           <index-sidebar/>
         </el-aside>
-        <el-main>
+        <el-main class="index-main">
           <router-view/>
         </el-main>
       </el-container>
@@ -47,7 +51,7 @@ export default {
     },
     videoPlay() {
       return (
-        this.$route.name === "videoDetail" || this.$route.name === "videoLive"
+        this.$route.name === "videoDetail"
       );
     }
   },
@@ -59,6 +63,7 @@ export default {
 
 <style lang="less">
 @import url("./assets/less/common.less");
+@import url('./assets/less/icon.less');
 #app {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -82,14 +87,18 @@ export default {
   // z-index: 2;
 }
 .el-main {
-  background: #eee;
   padding: 0px !important;
   position: absolute;
-  left: 200px;
   top: 50px;
   right: 0;
   bottom: 0;
   z-index: 1;
+}
+.videoplay-main {
+  left: 0
+}
+.index-main {
+  left: 200px;
 }
 .el-footer {
   background: linear-gradient(to left, #7b4397, #2196f3);

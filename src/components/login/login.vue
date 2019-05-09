@@ -5,17 +5,20 @@
       <div slot="header" class="my-header">
         <span>教评系统</span>
       </div>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="ruleForm" :rules="rules" label-width="80px">
         <el-form-item label="工号" prop="workerCode">
-          <el-input v-model="form.workerCode" prefix-icon="iconfont icon-yonghuming"></el-input>
+          <el-input v-model="ruleForm.workerCode" prefix-icon="iconfont icon-yonghuming"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="form.password" prefix-icon="iconfont icon-mima" @keyup.enter.native="login('form')"></el-input>
+          <el-input type="password" v-model="ruleForm.password" prefix-icon="iconfont icon-mima" @keyup.enter.native="login('form')"></el-input>
         </el-form-item>
-        <el-form-item style="float: right">
-          <el-button @click="resetForm('form')">取消</el-button>
-          <el-button type="primary" @click="login('form')">登录</el-button>
-        </el-form-item>
+        <el-row>
+          <el-checkbox v-model="checked">记住我</el-checkbox>
+          <div style="float: right">
+            <el-button @click="resetForm('ruleForm')">取消</el-button>
+            <el-button type="primary" @click="login('ruleForm')">登录</el-button>
+          </div>
+        </el-row>
       </el-form>
     </el-card>    
   </div>
@@ -26,7 +29,7 @@ import { loginByWorkerCode } from '@/api/user'
 export default {
   data() {
     return {
-      form: {
+      ruleForm: {
         workerCode: '',
         password: '',
       },
@@ -37,14 +40,16 @@ export default {
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
         ]
-      }
+      },
+      checked: false,
     }
   },
   methods: {
     login(formName) {
       this.$refs[formName].validate(valid => {
         if(valid) {
-          this.$store.dispatch("Login", this.form).then(() => {
+          // this.checked ? this.setLocalStorage(this.ruleForm.workerCode, this.ruleForm.password) : this.clearLocalStorage()      
+          this.$store.dispatch("Login", this.ruleForm).then(() => {
             this.$message({
               type: 'success',
               message: 'login success!',            
@@ -57,6 +62,20 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields()
     },
+    // setLocalStorage(workerCode, password) {
+    //   localStorage.siteName = workerCode
+    //   localStorage.sitePassword = password
+    // },
+    // getLocalStorage() {
+    //   this.ruleForm.workerCode = localStorage.getItem(localStorage.key(1))
+    //   this.ruleForm.password = localStorage.getItem(localStorage.key(2))
+    // },
+    // clearLocalStorage() {
+    //   this.setLocalStorage('', '')
+    // }
+  },
+  mounted() {
+    // this.getLocalStorage()
   }
   
 }

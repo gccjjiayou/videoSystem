@@ -19,51 +19,63 @@
             clearable
             @change="selectCollege">
             <el-option 
-              v-for="item in collegeOptions"
-              :key="item.id"
+              v-for="(item, index) in collegeOptions"
+              :key="index"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id"></el-option>
           </el-select>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <el-select 
             v-model="classroom" 
             placeholder="教室"
             clearable
             @change="selectClassroom">
             <el-option 
-              v-for="item in classroomOptions"
-              :key="item.id"
+              v-for="(item, index) in classroomOptions"
+              :key="index"
               :label="item.roomCode"
               :value="item.id">
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <el-select 
             v-model="teacher" 
             placeholder="教师"
             clearable
             @change="selectTeacher">
             <el-option
-              v-for="item in teacherOptions"
-              :key="item.id"
+              v-for="(item, index) in teacherOptions"
+              :key="index"
               :label="item.name"
               :value="item.id"></el-option>
           </el-select>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <el-select 
             v-model="course" 
             placeholder="课程"
             clearable
             @change="selectCourse">
             <el-option
-              v-for="item in courseOptions"
-              :key="item.cid"
+              v-for="(item, index) in courseOptions"
+              :key="index"
               :label="item.name"
               :value="item.cid"></el-option>
+          </el-select>
+        </el-col>
+        <el-col :span="6">
+          <el-select
+            v-model="grade"
+            placeholder="班级"
+            clearable
+            @change="selectGrade">
+            <el-option
+              v-for="(item, index) in gradeOptions"
+              :key="index"
+              :label="item.name"
+              :value="item.id"></el-option>
           </el-select>
         </el-col>
       </el-row>
@@ -77,6 +89,7 @@ import { getAllColleges } from "@/api/college"
 import { getAllTeachersByCollegeId } from "@/api/teacher"
 import { getAllClassrooms } from "@/api/classroom"
 import { getAllCoursesByTeacherId } from "@/api/course"
+import { getAllGradesByCourseId } from "@/api/grade"
 export default {
   data() {
     return {
@@ -84,11 +97,13 @@ export default {
       classroom: '',
       teacher: '',
       course: '',
+      grade: '',
       searchString: '',
       collegeOptions: [],
       classroomOptions: [],
       teacherOptions: [],
       courseOptions: [],
+      gradeOptions: [],
     }
   },
   methods: {
@@ -114,6 +129,11 @@ export default {
       this.course = val
       this.$store.commit('SET_COURSE', val)
       this.$emit('select-course')
+    },
+    selectGrade(val) {
+      this.grade = val
+      this.$store.commit('SET_GRADE', val)
+      this.$emit('select-grade')
     }
   },
   watch: {
@@ -125,6 +145,11 @@ export default {
     teacher: function(val, oldVal) {
       getAllCoursesByTeacherId(val).then(res => {
         this.courseOptions = res.data.result
+      })
+    },
+    course: function(val, oldVal) {
+      getAllGradesByCourseId(val).then(res => {
+        this.gradeOptions = res.data.result
       })
     } 
   },

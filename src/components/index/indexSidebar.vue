@@ -46,11 +46,9 @@
                 <i class="iconfont icon-shipin"></i>
                 <span class="sidebar-span">视频管理</span>
             </el-menu-item>  
-            <el-menu-item index="5">
-                <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoLive'}">
-                    <i class="iconfont icon-zhibo"></i>
-                    <span class="sidebar-span">视频直播</span>
-                </router-link>
+            <el-menu-item index="/videoLive">      
+                <i class="iconfont icon-zhibo"></i>
+                <span class="sidebar-span">视频直播</span>    
             </el-menu-item>    
         </el-menu>
     </el-card>

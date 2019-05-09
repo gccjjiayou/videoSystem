@@ -4,8 +4,10 @@ import { Message } from 'element-ui'
 const user = {
   state: {
     workerCode: '',
+    password: '',
     hasLogin: false || (sessionStorage.getItem('hasLogin') === 'true'),
     showVideoLive: false || (sessionStorage.getItem('showVideoLive') === 'true'),
+    expires: -1
   },
   mutations: {
     SET_WORKERCODE: (state, workerCode) => {
@@ -20,6 +22,10 @@ const user = {
     },
     SHOW_VIDEOLIVE: state => {
       state.showVideoLive = true
+    },
+    SET_COOKIE: (state, workerCode, password, expires) => {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime())
     }
   },
   actions: {

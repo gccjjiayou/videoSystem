@@ -1,5 +1,5 @@
 <template>
-<el-card shadow="hover" :body-style="{padding: '10px'}">
+<div>
   <h4>热门</h4>
   <div v-for="(item, index) in hotVideoData" :key="index"  class="hot-video-info">
     <div class="hot-left">
@@ -12,17 +12,17 @@
       <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
       <div class="icon-info">
         <div class="icon">
-          <img src="@/assets/img/list/play.jpg" alt="">
-          <span>{{item.clickNum}}</span>
+          <i class="iconfont icon-bofangliang"></i>
+          <span style="margin-left: 5px;">{{item.clickNum}}</span>
         </div>
         <div class="icon">
-          <img src="@/assets/img/list/rank.jpg" alt="">
-          <span>{{item.rank}}</span>
+          <i class="iconfont icon-pingfen"></i>
+          <span style="margin-left: 5px;">{{item.rank}}</span>
         </div>               
       </div>
     </div>
   </div>
-</el-card>  
+</div>
 </template>
 
 <script>
@@ -33,16 +33,16 @@ export default {
   },
   data() {
     return {
-      defaultImg: require('@/assets/img/list/default-img.jpg'),
+      defaultImg: require('@/assets/img/default-img.jpg'),
       hotVideoData: [],
       rankNum: {
         color: '#fff',
-        height: '18px',
+        display: 'inline-block',
+        width: '22px',
         'line-height': '18px',
         'font-size': '12px',
         'text-align': 'center',
         'border-radius': '4px',
-        padding: '0 5px',
         'font-weight': 'bolder',
         'font-style': 'normal',   
       },
@@ -73,11 +73,10 @@ export default {
 .hot-video-info {
   display: flex;
   font-size: 12px;
-}
-.hot-left {
-  margin-right: 10px;
+  margin-bottom: 5px;
 }
 .hot-middle {
+  margin-left: 20px;
   margin-right: 20px;
 }
 .hot-right {

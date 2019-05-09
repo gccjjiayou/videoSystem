@@ -4,6 +4,7 @@ const admin = {
     classroom: '',
     teacher: '',
     course: '',
+    grade: ''
   },
   mutations: {
     SET_COLLEGE: (state, college) => {
@@ -17,7 +18,10 @@ const admin = {
     },
     SET_COURSE: (state, course) => {
       state.course = course
-    }
+    },
+    SET_GRADE: (state, grade) => {
+      state.grade = grade
+    },
   }
 }
 
