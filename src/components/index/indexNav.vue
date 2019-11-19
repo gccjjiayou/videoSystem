@@ -11,7 +11,7 @@
       <el-menu-item index="/">首页</el-menu-item>
       <el-menu-item index="/video">视频</el-menu-item>
       <el-menu-item index="/rank">排行榜</el-menu-item>
-      <el-menu-item index="">评教</el-menu-item>
+      <el-menu-item index="/assessment">评教</el-menu-item>
       <el-menu-item index="/videoLive">直播</el-menu-item>
       <el-menu-item index="">个人中心</el-menu-item>
     </el-menu>

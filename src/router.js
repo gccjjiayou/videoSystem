@@ -26,6 +26,11 @@ export default new Router({
       component: () => import('@/views/rank')
     },
     {
+      path: '/assessment',
+      name: 'assessment',
+      component: () => import('@/views/assessment')
+    },
+    {
       path: '/video/videoDetail/:videoId',
       name: 'videoDetail',
       component: () => import('@/views/videoDetail')
