@@ -1,17 +1,27 @@
+/*调整边距*/
+.inblk {
+  display: inline-block;
+}
+.mb20 {
+  margin-bottom: 20px;;
+}
+/*修改组件样式*/
+a:-webkit-any-link {
+  text-decoration: none;
+}
+a:-webkit-any-link:hover {
+  color: #409EFF;
+}
+/*定义组件样式*/
 /* 修改Element UI的默认CSS */
 .el-submenu__title:hover{
     background: linear-gradient(to left, #7c8ce4, #2196f3);
 }
 .el-menu-item:hover {
-    background: linear-gradient(to left, #7c8ce4, #2196f3);
+    // background: linear-gradient(to left, #7c8ce4, #2196f3);
+    // background-color: rgb(204, 204, 204);
+    background: black;
 }
-.el-menu-item.is-active {
-    background-color: #ecf5ff;
-}
-// .el-card__header {
-//     padding: 0 20px;
-//     background: black;
-// }
 .el-breadcrumb{
     padding: 10px;
     font-size: 12px;
@@ -54,12 +64,6 @@
 }
 img {
     border-radius: 8px;
-}
-.el-button-group {
-    // display: flex !important;
-    // justify-content: space-around;
-
-    // margin-left: 30px;
 }
 .el-button-group>.el-button:not(:last-child) {
     margin-right: 90px !important;

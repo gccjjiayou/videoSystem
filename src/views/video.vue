@@ -1,5 +1,10 @@
 <template>
-  <div class="my-video">
+  <div class="outer-box">
+    <base-header title="视频"></base-header>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>视频</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-row>
       <el-col :span="18">
         <video-searchbar
@@ -12,38 +17,36 @@
           @select-class="getSelectData"
           @select-grade="getSelectData"
         ></video-searchbar>   
-        <template v-for="(item, index) in videoData">
-          <section :key="index" class="video-info">
-            <div class="left">
-              <img :src="item.coverPicUrl || defaultImg" alt width="160px" height="100px">
+        <section v-for="(item, index) in videoData" :key="index" class="video-info">
+          <div class="left">
+            <img :src="item.coverPicUrl || defaultImg" alt width="160px" height="100px">
+          </div>
+          <div class="right">
+            <div class="head-info">
+              <router-link
+                target="_blank"
+                style="text-decoration: none;"
+                :to="{name: 'videoDetail', params: {videoId: item.videoId}}"
+              >{{item.videoTitle}}</router-link>
+              <span>{{item.uploadTime}}</span>
             </div>
-            <div class="right">
-              <div class="head-info">
-                <router-link
-                  target="_blank"
-                  style="text-decoration: none;"
-                  :to="{name: 'videoDetail', params: {videoId: item.videoId}}"
-                >{{item.videoTitle}}</router-link>
-                <span>{{item.uploadTime}}</span>
+            <div class="icon-info">
+              <div class="icon">
+                <i class="iconfont icon-bofangliang"></i>
+                <span style="margin-left: 5px;">{{item.clickNum}}</span>
               </div>
-              <div class="icon-info">
-                <div class="icon">
-                  <i class="iconfont icon-bofangliang"></i>
-                  <span style="margin-left: 5px;">{{item.clickNum}}</span>
-                </div>
-                <div style="width: 90px" class="icon">
-                  <i class="iconfont icon-pingfen"></i>
-                  <span style="margin-left: 5px;">{{item.rank}}</span>
-                </div>
-                <a style="text-decoration: none;" :href="item.videoUrl" download>
-                  <i class="el-icon-download"></i>
-                  <span style="margin-left: 5px;">{{parseFloat(item.size / 1048576).toFixed(2)}}MB</span>
-                </a>
-                
+              <div style="width: 90px" class="icon">
+                <i class="iconfont icon-pingfen"></i>
+                <span style="margin-left: 5px;">{{item.rank}}</span>
               </div>
+              <a style="text-decoration: none;" :href="item.videoUrl" download>
+                <i class="el-icon-download"></i>
+                <span style="margin-left: 5px;">{{parseFloat(item.size / 1048576).toFixed(2)}}MB</span>
+              </a>
+              
             </div>
-          </section>
-        </template>
+          </div>
+        </section>
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -65,10 +68,12 @@
 import { getVideo } from "@/api/video";
 import videoSearchbar from "@/components/video/videoSearchbar";
 import videoHotList from "@/components/video/videoHotList";
+import baseHeader from "@/components/common/baseHeader"
 export default {
   components: {
     "video-searchbar": videoSearchbar,
-    "video-hotlist": videoHotList
+    "video-hotlist": videoHotList,
+    "base-header": baseHeader
   },
   data() {
     return {

@@ -1,46 +1,21 @@
 <template>
-  <el-row class="wrap-items" type="flex">
-      <el-col :span="18">
-        <span style="color: #fff; font-size: 25px; font-weight: bold; letter-spacing: 2px;">教评系统</span>
-      </el-col>
-      <el-col :span="6">
-        <el-row class="wrap-items" type="flex">
-          <el-col :span="6">
-            <el-dropdown>  
-              <img src="@/assets/img/nav-bell.jpg" alt="">          
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>选项1</el-dropdown-item>
-                <el-dropdown-item>选项2</el-dropdown-item>
-                <el-dropdown-item>选项3</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-          <el-col :span="6">
-            <el-dropdown>
-              <img src="@/assets/img/nav-message.jpg" alt="">
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>选项1</el-dropdown-item>
-                <el-dropdown-item>选项2</el-dropdown-item>
-                <el-dropdown-item>选项3</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-          <el-col :span="6">            
-            <el-dropdown>
-              <img src="@/assets/img/nav-list.jpg" alt="">
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>选项1</el-dropdown-item>
-                <el-dropdown-item>选项2</el-dropdown-item>
-                <el-dropdown-item>选项3</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-          <el-col :span="6">
-            <el-button type="text" @click="logout">退出</el-button>
-          </el-col>
-        </el-row>
-      </el-col>
-  </el-row>
+  <div class="nav-outerbox">
+    <img src="@/assets/img/HustLogo_small.png" height="50px" alt="">
+    <span style="font-size: 30px; font-weight: bolder; font-family: 楷体,楷体_GB2312;">在线学习的评教管理系统</span>
+    <el-menu 
+      class="nav-menu"
+      mode="horizontal"
+      background-color="transparent"
+      :default-active="$route.path"
+      router>
+      <el-menu-item index="/">首页</el-menu-item>
+      <el-menu-item index="/video">视频</el-menu-item>
+      <el-menu-item index="/rank">排行榜</el-menu-item>
+      <el-menu-item index="">评教</el-menu-item>
+      <el-menu-item index="/videoLive">直播</el-menu-item>
+      <el-menu-item index="">个人中心</el-menu-item>
+    </el-menu>
+  </div>
 </template>
 
 <script>
@@ -74,7 +49,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wrap-items {
+.nav-outerbox {
+  display: flex;
   align-items: center;
+}
+.el-menu.el-menu--horizontal {
+  border-bottom-color: transparent;
+  position: absolute;
+  right: 0;
+}
+.el-menu--horizontal > .el-menu-item {
+  font-size: 18px;
+  // margin-left: 40px;
+}
+.el-menu--horizontal > .el-menu-item:hover {
+  background-color: black;
 }
 </style>

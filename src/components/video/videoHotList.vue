@@ -1,6 +1,9 @@
 <template>
 <div>
-  <h4>热门</h4>
+  <div class="title">
+    <i class="iconfont icon-remen"></i>
+    <h3 style="margin-left: 8px;">热门</h3>
+  </div>
   <div v-for="(item, index) in hotVideoData" :key="index"  class="hot-video-info">
     <div class="hot-left">
       <i :style="[index < 3? top3Background : restBackground, rankNum]">{{index + 1}}</i>              
@@ -9,7 +12,7 @@
       <img :src="item.coverPicUrl || defaultImg" alt="" width="80px" height="50px">
     </div>
     <div class="hot-right">       
-      <router-link target="_blank" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
+      <router-link target="_blank" class="video-title" style="text-decoration: none;" :to="{name: 'videoDetail', params: {videoId: item.videoId}}">{{item.videoTitle}}</router-link>
       <div class="icon-info">
         <div class="icon">
           <i class="iconfont icon-bofangliang"></i>
@@ -85,11 +88,21 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
+.video-title:hover {
+  font-size: 17px;
+  color: red;
+}
 .icon-info {
   display: flex;
 }
 .icon {
   width: 50px;
 }
-
+.title {
+  display: flex;
+  align-items: center;
+}
+.icon-remen {
+  color: red;
+}
 </style>

@@ -15,20 +15,20 @@ export default new Router({
       meta: {requireAuth: true}, // 需要登录的用户才能看到
     },
     {
-      path: '/college',
-      name: 'college',
-      component: () => import('@/views/college')
-    },
-    {
       path: '/video',
       name: 'video',
-      component: () => import('@/views/video'),
+      component: () => import('@/views/video')
 
+    },
+    {
+      path: '/rank',
+      name: 'rank',
+      component: () => import('@/views/rank')
     },
     {
       path: '/video/videoDetail/:videoId',
       name: 'videoDetail',
-      component: () => import('@/views/videoDetail'),
+      component: () => import('@/views/videoDetail')
     },
     {
       path: '/videoLive',

@@ -6,6 +6,7 @@
     clearable
     @keyup.enter.native="searchData"></el-input>
   <el-button style="margin: 10px"
+    type="primary"
     icon="el-icon-search"
     plain                   
     @click="searchData"></el-button>

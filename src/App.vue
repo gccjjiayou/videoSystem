@@ -1,29 +1,13 @@
 <template>
-  <el-container v-if="hasLogin">
-    <el-container v-if="videoPlay">
-      <el-header height="50px">
-        <index-nav />
-      </el-header>
-      <el-main class="videoplay-main">
-        <router-view/>
-      </el-main>    
-    </el-container>
-    <el-container v-else>
-      <el-header height="50px">
-        <index-nav/>
-      </el-header>
-      <el-container class="content-wrap">
-        <el-aside width="200px">
-          <index-sidebar/>
-        </el-aside>
-        <el-main class="index-main">
-          <router-view/>
-        </el-main>
-      </el-container>
-    </el-container>
-  </el-container>
+  <div v-if="hasLogin">
+    <div class="head"><index-nav /></div>
+    <div class="body">
+      <!-- <div class="aside"><index-sidebar /></div> -->
+      <div class="main"><router-view /></div>
+    </div>
+  </div>
   <div v-else>
-    <login></login>
+    <login />
   </div>
 </template>
 
@@ -50,62 +34,38 @@ export default {
       return this.$store.state.user.hasLogin;
     },
     videoPlay() {
-      return (
-        this.$route.name === "videoDetail"
-      );
+      return this.$route.name === "videoDetail";
     }
   },
-  mounted() {
-
-  }
+  mounted() {}
 };
 </script>
 
 <style lang="less">
 @import url("./assets/less/common.less");
-@import url('./assets/less/icon.less');
+@import url("./assets/less/icon.less");
 #app {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.el-header {
-  background: linear-gradient(to left, #7b4397, #2196f3);
-  position: fixed !important;
+.head {
+  // background: linear-gradient(to left, #436597, #2164f3);
+  background-color: #fff;
+  padding: 0 30px;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
-.el-aside {
-  background: #fff;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  position: fixed !important;
-  top: 50px;
-  left: 0;
-  bottom: 0;
-  // z-index: 2;
-}
-.el-main {
-  padding: 0px !important;
+.body > .main {
   position: absolute;
-  top: 50px;
+  top: 60px;
   right: 0;
   bottom: 0;
-  z-index: 1;
-}
-.videoplay-main {
-  left: 0
-}
-.index-main {
-  left: 200px;
-}
-.el-footer {
-  background: linear-gradient(to left, #7b4397, #2196f3);
-  position: absolute;
-  bottom: 0;
   left: 0;
-  right: 0;
-  z-index: 2;
 }
 </style>
