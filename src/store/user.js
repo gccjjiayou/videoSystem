@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 
 const user = {
   state: {
-    workerCode: '',
+    workerCode: '' || sessionStorage.getItem('workerCode'),
     password: '',
     hasLogin: false || (sessionStorage.getItem('hasLogin') === 'true'),
     showVideoLive: false || (sessionStorage.getItem('showVideoLive') === 'true'),

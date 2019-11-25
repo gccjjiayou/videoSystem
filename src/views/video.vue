@@ -164,6 +164,7 @@ export default {
   },
   mounted() {
     this.searchVideo();
+    console.log('cookie: ', window.document.cookie);
   }
 };
 </script>

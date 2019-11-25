@@ -79,7 +79,6 @@ ul {
   height: 100%;
   list-style: none;
   padding: 0;
-  // transform: rotate3d(1, 1, 0, -30deg);
   transform-style: preserve-3d; //保留3d效果，在要保留3d效果的元素的父元素上添加该属性
 }
 ul > li {

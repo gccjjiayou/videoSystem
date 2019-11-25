@@ -1,5 +1,5 @@
 <template>
-  <div class="my-login">
+  <div class="outer-box">
     <div class="overlay"></div>
     <el-card class="login-card" shadow="hover">
       <div slot="header" class="my-header">
@@ -12,13 +12,16 @@
         <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="ruleForm.password" prefix-icon="iconfont icon-mima" @keyup.enter.native="login('form')"></el-input>
         </el-form-item>
-        <el-row>
-          <el-checkbox v-model="checked">记住我</el-checkbox>
-          <div style="float: right">
-            <el-button @click="resetForm('ruleForm')">取消</el-button>
-            <el-button type="primary" @click="login('ruleForm')">登录</el-button>
-          </div>
-        </el-row>
+        <el-form-item>
+          <el-row type="flex" align="middle">
+            <el-col><el-checkbox v-model="checked">记住我</el-checkbox></el-col>
+            <el-col> 
+              <el-button @click="resetForm()">取消</el-button>
+              <el-button type="primary" @click="login()">登录</el-button>
+            </el-col>
+          </el-row>
+        </el-form-item>
+        
       </el-form>
     </el-card>    
   </div>
@@ -41,48 +44,61 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
         ]
       },
-      checked: false,
+      checked: true,
     }
   },
   methods: {
-    login(formName) {
+    login() {
       this.$refs.form.validate(valid => {
         if(valid) {
-          // this.checked ? this.setLocalStorage(this.ruleForm.workerCode, this.ruleForm.password) : this.clearLocalStorage()      
-          this.$store.dispatch("Login", this.ruleForm).then(() => {
+          this.$store.dispatch("Login", this.ruleForm).then((res) => {
             this.$message({
               type: 'success',
-              message: 'login success!',            
+              message: '登录成功!',            
             })
-            sessionStorage.setItem('hasLogin', true)
-          })         
+            sessionStorage.setItem('hasLogin', true);
+            sessionStorage.setItem('workerCode', this.ruleForm.workerCode);
+            this.checked ? this.setCookie(this.ruleForm.workerCode, this.ruleForm.password, 7) : this.clearCookie();
+          })  
         }
-      })   
+      })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    resetForm() {
+      this.$refs.form.resetFields()
     },
-    // setLocalStorage(workerCode, password) {
-    //   localStorage.siteName = workerCode
-    //   localStorage.sitePassword = password
-    // },
-    // getLocalStorage() {
-    //   this.ruleForm.workerCode = localStorage.getItem(localStorage.key(1))
-    //   this.ruleForm.password = localStorage.getItem(localStorage.key(2))
-    // },
-    // clearLocalStorage() {
-    //   this.setLocalStorage('', '')
-    // }
+    setCookie(workerCode, password, exdays) {
+      let exdate = new Date();
+      exdate.setTime(exdate.getTime() + exdays * 24 * 60 * 60 * 1000); //cookie有效时间
+      window.document.cookie = `workerCode=${workerCode};path=/;expires=${exdate.toGMTString()}`;
+      window.document.cookie = `password=${password};path=/;expires=${exdate.toGMTString()}`;
+    },
+    getCookie() {
+      let str = document.cookie;
+      if(str.length) {
+        let arr = str.split(" ").join('').split(";")
+        for(let i = 0; i < arr.length; i++) {
+          let keyPair = arr[i].split('=');
+          if(keyPair[0] === 'workerCode') {
+            this.ruleForm.workerCode = keyPair[1];
+          }
+          if(keyPair[0] === 'password') {
+            this.ruleForm.password = keyPair[1];
+          }
+        }
+      }
+    },
+    clearCookie() {
+      this.setCookie('', '', -1);
+    }
   },
   mounted() {
-    // this.getLocalStorage()
+    this.getCookie();
   }
-  
 }
 </script>
 
 <style lang="less" scoped>
-.my-login {
+.outer-box {
   background-image: url('../../assets/img/login-background.jpg'); 
   background-repeat: no-repeat;
   background-size: cover;

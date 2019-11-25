@@ -24,9 +24,6 @@ axiosInstance.interceptors.request.use(
 // response拦截器
 axiosInstance.interceptors.response.use(
   response => {
-    if(response.data.responseCode !== 'OK') {
-      Message.error(response.data.result)
-    }
     return response
   },
   error => {

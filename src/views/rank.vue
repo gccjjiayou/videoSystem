@@ -45,13 +45,11 @@ import { getVideo } from "@/api/video";
 import { getAllColleges } from "@/api/college"
 import baseHeader from "@/components/common/baseHeader"
 import baseTable from "@/components/common/baseTable"
-import baseVideolist from "@/components/common/baseVideolist"
 export default {
   name: "rank",
   components: {
     "base-header": baseHeader,
-    "base-table": baseTable,
-    "base-videolist": baseVideolist
+    "base-table": baseTable
   },
   data() {
     return {
@@ -87,12 +85,12 @@ export default {
         null,
         null        
       ).then(res => {
-        this.videoData = res.data.result.rows;
+        // this.tableData = res.data.result.rows;
         this.total = res.data.result.total;
       });
       getAllColleges().then(res => {
-      this.collegeOptions = res.data.result
-    })
+        this.collegeOptions = res.data.result
+      })
   }
 }
 </script>

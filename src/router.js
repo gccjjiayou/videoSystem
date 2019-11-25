@@ -21,6 +21,11 @@ export default new Router({
 
     },
     {
+      path: '/video/videoDetail/:videoId',
+      name: 'videoDetail',
+      component: () => import('@/views/videoDetail')
+    },
+    {
       path: '/rank',
       name: 'rank',
       component: () => import('@/views/rank')
@@ -31,14 +36,14 @@ export default new Router({
       component: () => import('@/views/assessment')
     },
     {
-      path: '/video/videoDetail/:videoId',
-      name: 'videoDetail',
-      component: () => import('@/views/videoDetail')
-    },
-    {
       path: '/videoLive',
       name: 'videoLive',
       component: () => import('@/views/videoLive'),
+    },
+    {
+      path: '/personal',
+      name: 'personal',
+      component: () => import('@/views/personal')
     }
   ]
 })

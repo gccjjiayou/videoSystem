@@ -1,5 +1,6 @@
 <template>
   <div>
+    <base-header title="视频详情" />
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{path: '/video'}">视频管理</el-breadcrumb-item>
       <el-breadcrumb-item>视频详情</el-breadcrumb-item>
@@ -146,7 +147,11 @@
 <script>
 import echarts from "echarts";
 import { getVideoDetail, getTeacherOtherVideos } from "@/api/video";
+import baseHeader from "@/components/common/baseHeader"
 export default {
+  components: {
+    'base-header': baseHeader
+  },
   data() {
     return {
       defaultImg: require("@/assets/img/default-img.jpg"),
